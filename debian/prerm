@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+PACKAGE=ion
+
+case "$1" in
+  upgrade) ;;
+  remove|failed-upgrade|deconfigure)
+    update-alternatives --remove x-window-manager /usr/bin/ion
+    ;;
+esac
+
+if [ \( "$1" = "upgrade" -o "$1" = "remove" \) \
+    -a -L /usr/doc/$PACKAGE ]; then
+        rm -f /usr/doc/$PACKAGE
+fi

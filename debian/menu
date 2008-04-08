@@ -1,0 +1,2 @@
+?package(ion):needs=wm section="WindowManagers" \
+  title="Ion" command="/usr/bin/ion"

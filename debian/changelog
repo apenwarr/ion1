@@ -1,0 +1,38 @@
+ion (0.0.20020207-1) unstable; urgency=low
+
+  * New upstream version. Reverts to old behaviour with respect to
+    client-requested window size restored (i.e. force to frame size)
+    (Closes: #131970).
+
+ -- Tommi Virtanen <tv@debian.org>  Fri,  8 Feb 2002 20:28:47 +0200
+
+ion (0.0.20020120-1) unstable; urgency=low
+
+  * New upstream version.
+  * Moved /etc/ion to /etc/X11/ion, as per policy. Watch out if you
+    have local files in /etc/ion, or include them in your own config
+    files (Closes: #105726).
+
+ -- Tommi Virtanen <tv@debian.org>  Thu, 31 Jan 2002 21:07:35 +0200
+
+ion (0.0.20010523-2) unstable; urgency=low
+
+  * doc/functions.txt: It's goto_X, not goto_X_frame (Closes: #103084).
+  * Makefile, man/ion.1x.in: Filenames mentioned in the man page were
+    wrong, added more sed magic to Makefile (Closes: #102184).
+
+ -- Tommi Virtanen <tv@debian.org>  Sat, 14 Jul 2001 22:58:05 +0300
+
+ion (0.0.20010523-1) unstable; urgency=low
+
+  * New upstream version.
+  * Use x-terminal-emulator instead of xterm (Closes: #97575).
+
+ -- Tommi Virtanen <tv@debian.org>  Sat, 23 Jun 2001 02:00:53 +0300
+
+ion (0.0.20010314-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Tommi Virtanen <tv@debian.org>  Sun, 29 Apr 2001 18:32:22 +0300
+

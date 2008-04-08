@@ -1,0 +1,59 @@
+#!/bin/sh
+set -e
+
+PACKAGE=ion
+
+if [ "$1" = "configure" ]; then
+    if [ -d /usr/doc -a ! -e /usr/doc/$PACKAGE \
+	-a -d /usr/share/doc/$PACKAGE ]; then
+	    ln -sf ../share/doc/$PACKAGE /usr/doc/$PACKAGE
+    fi
+fi
+
+
+
+
+FILES="bindings-default.conf ion.conf look-brownsteel.conf
+	look-simpleblue.conf sample.conf bindings-sun.conf
+	kludges.conf look-greyviolet.conf look-wheat.conf"
+
+remove_old_cfg () {
+# In previous versions, ion used /etc/ion as a config dir. It
+# now uses /etc/X11/ion. We remove the files we copied in preinst
+    for file in $FILES; do
+	if [ -e "/etc/X11/ion/$file" -a -e "/etc/ion/$file" ]; then
+	    rm "/etc/ion/$file"
+	fi
+    done
+    rmdir "/etc/ion" >/dev/null 2>&1 || true
+}
+
+remove_old_cfg_abort () {
+# If upgrade fails, then let the files where they were before
+# install/upgrade (cancel the 'move' stuff initiated in preinst).
+    for file in $FILES; do
+	if [ -e "/etc/X11/ion/$file" -a -e "/etc/ion/$file" ]; then
+	    rm "/etc/X11/ion/$file"
+	fi
+    done
+}
+
+
+case "$1" in
+    configure) remove_old_cfg ;;
+
+    abort-upgrade) remove_old_cfg_abort ;;
+
+   *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac
+
+
+update-alternatives --install \
+    /usr/bin/x-window-manager x-window-manager /usr/bin/ion 20 \
+    --slave /usr/share/man/man1/x-window-manager.1.gz x-window-manager.1.gz \
+    /usr/share/man/man1/ion.1x.gz
+
+if test -x /usr/bin/update-menus; then update-menus; fi

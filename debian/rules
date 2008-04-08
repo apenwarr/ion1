@@ -1,0 +1,75 @@
+#!/usr/bin/make -f
+
+PACKAGE:=ion
+INSTDIR:=debian/inst.$(PACKAGE)
+DOCDIR:=$(INSTDIR)/usr/share/doc/$(PACKAGE)
+
+build:
+	test -e debian/control
+	$(MAKE) depend ETCDIR=/etc/X11
+	$(MAKE) PREFIX=/usr ETCDIR=/etc/X11 \
+		MANDIR=/usr/share/man \
+		DOCDIR=/usr/share/doc \
+		HAS_SYSTEM_ASPRINTF=1
+
+clean:
+	test -e debian/control
+	test root = "`whoami`" || (echo need root priviledges; exit 1)
+	rm -f
+	-$(MAKE) realclean
+	rm -f debian/files debian/substvars
+	rm -rf $(INSTDIR)
+
+install:
+	test -e debian/control
+	test root = "`whoami`" || (echo need root priviledges; exit 1)
+	rm -f debian/substvars
+	rm -rf $(INSTDIR)
+	$(MAKE) install \
+		PREFIX=$(CURDIR)/$(INSTDIR)/usr \
+		ETCDIR=$(CURDIR)/$(INSTDIR)/etc/X11 \
+		MANDIR=$(CURDIR)/$(INSTDIR)/usr/share/man \
+		DOCDIR=$(CURDIR)/$(INSTDIR)/usr/share/doc
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	test -e debian/control
+	test root = "`whoami`" || (echo need root priviledges; exit 1)
+	install -d -m0755 $(DOCDIR)/examples \
+		$(INSTDIR)/usr/lib/menu
+	install -m0644 debian/menu $(INSTDIR)/usr/lib/menu/ion
+	# clean up after upstream
+	mv $(INSTDIR)/etc/X11/ion/bindings-sun.conf $(DOCDIR)/examples
+	# this one's identical with ion.conf
+	rm -f $(INSTDIR)/etc/X11/ion/sample.conf
+	rm -f $(DOCDIR)/LICENSE
+	mv $(DOCDIR)/ChangeLog $(DOCDIR)/changelog
+	chmod -R g-w $(INSTDIR)
+	install -m0644 README $(DOCDIR)/README
+	install -m0644 debian/copyright $(DOCDIR)/copyright
+	install -m0644 debian/changelog $(DOCDIR)/changelog.Debian
+	mv -i $(INSTDIR)/usr/share/man/man1/ion.1x $(INSTDIR)/usr/share/man/man1/ion.1
+	gzip -9f $(DOCDIR)/README \
+		$(DOCDIR)/changelog $(DOCDIR)/changelog.Debian \
+		$(INSTDIR)/usr/share/man/man1/ion.1
+#	for a in ion-edit ion-man ion-runinxterm ion-ssh ion-view; do \
+#		ln -s ../man7/undocumented.7.gz $(INSTDIR)/usr/share/man/man1/$$a.1.gz ;\
+#	done
+	strip --remove-section=.comment --remove-section=.note \
+		$(INSTDIR)/usr/bin/ion
+	install -d -m0755 $(INSTDIR)/DEBIAN
+	cd $(INSTDIR) && find ./etc -type f | sed 's/^\.//g' >DEBIAN/conffiles.tmp
+	chmod 0644 $(INSTDIR)/DEBIAN/conffiles.tmp
+	mv $(INSTDIR)/DEBIAN/conffiles.tmp $(INSTDIR)/DEBIAN/conffiles
+	install -m0755 debian/preinst debian/postinst debian/prerm debian/postrm \
+		$(INSTDIR)/DEBIAN
+	dpkg-shlibdeps $(INSTDIR)/usr/bin/ion
+	dpkg-gencontrol -isp -P$(INSTDIR)
+	dpkg --build $(INSTDIR) ..
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary

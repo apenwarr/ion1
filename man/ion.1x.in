@@ -45,7 +45,7 @@ Show manual page (query, uses ion-man).
 Show Ion manual page.
 .TP
 .B F2
-Run an xterm.
+Run an x-terminal-emulator.
 .TP
 .B F3
 Run a program (query). Precede the program name with a colon (:) to run in xterm (ion-runinxterm).
@@ -246,13 +246,13 @@ Drag border: resize.
 
 .SH FILES
 .TP
-.B PREFIX/etc/ion/ion.conf
+.B ETCDIR/ion/ion.conf
 System default configuration file
 .TP
-.B PREFIX/etc/ion/look-*.conf
+.B ETCDIR/ion/look-*.conf
 Color scheme configuration files
 .TP
-.B PREFIX/etc/ion/bindings-*.conf
+.B ETCDIR/ion/bindings-*.conf
 Keyboard and pointer binding configuration files
 .TP
 .B ~/.ion/ion.conf
@@ -261,7 +261,7 @@ User default configuration file (overrides system default)
 .SH SEE ALSO
 The Ion home page, \fIhttp://www.students.tut.fi/~tuomov/ion/\fP
 .PP
-.I PREFIX/doc/ion/
+.I DOCDIR/ion/
 .PP
 .I X(1x)
 .SH AUTHOR

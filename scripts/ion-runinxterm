@@ -1,6 +1,6 @@
 #!/bin/sh
 
-test "$XTERMCMD" || XTERMCMD="xterm"
+test "$XTERMCMD" || XTERMCMD="x-terminal-emulator"
 
 if test $# -lt 1; then
 	echo error

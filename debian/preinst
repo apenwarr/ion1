@@ -1,0 +1,37 @@
+#! /bin/sh
+set -e
+
+FILES="bindings-default.conf ion.conf look-brownsteel.conf
+	look-simpleblue.conf sample.conf bindings-sun.conf
+	kludges.conf look-greyviolet.conf look-wheat.conf"
+
+rename_conf () {
+    for file in $FILES; do
+	if [ -e "/etc/ion/$file" -a ! -e "/etc/X11/ion/$file" ]; then
+	    # We first copy the file, it'll be removed in
+	    # postinst. This allows us to unwind if install/upgrade
+	    # fails or is aborted.
+	    echo "Copying /etc/ion/$file to /etc/X11/ion"
+	    test -d "/etc/X11/ion" || mkdir "/etc/X11/ion"
+	    cp -a "/etc/ion/$file" "/etc/X11/ion/"
+	fi
+    done
+}
+
+rename_conf_abort () {
+    for file in $FILES; do
+	if [ -e "/etc/ion/$file" -a -e "/etc/X11/ion/$file" ]; then
+	    rm "/etc/X11/ion/$file"
+	fi
+    done
+}
+
+case "$1" in
+    install|upgrade) rename_conf ;;
+    abort-upgrade) rename_conf_abort ;;
+
+    *)
+        echo "preinst called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac

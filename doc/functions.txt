@@ -12,10 +12,10 @@ Navigation
 switch_nth, n		Switch to n:th client within frame
 switch_next		Switch to next client within frame
 switch_prev		Switch to previous client within frame
-goto_above_frame	Go to above frame
-goto_below_frame	Go to below frame
-goto_right_frame	Go to next frame left
-goto_left_frame		Go to next frame right
+goto_above		Go to above frame
+goto_below		Go to below frame
+goto_right		Go to next frame left
+goto_left		Go to next frame right
 goto_previous		Goto previously active client
 switch_ws_name, "name"	Go to named workspace
 switch_ws_nth, n	Go to n:th workspace

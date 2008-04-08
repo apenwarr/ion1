@@ -28,7 +28,7 @@ include rules.mk
 ######################################
 
 man/ion.1x: man/ion.1x.in
-	sed 's#PREFIX#$(PREFIX)#g' man/ion.1x.in > man/ion.1x
+	sed 's#PREFIX#$(PREFIX)#g;  s#DOCDIR#$(DOCDIR)#g; s#ETCDIR#$(ETCDIR)#g' man/ion.1x.in > man/ion.1x
 
 _install:
 	$(INSTALLDIR) $(BINDIR)

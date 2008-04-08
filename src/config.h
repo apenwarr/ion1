@@ -36,8 +36,8 @@
 
 /*#define CF_NO_LOCK_HACK*/
 #define CF_SWITCH_NEW_CLIENTS
-/*#define CF_WARP*/
-/*#define CF_WARP_WS*/
+#define CF_WARP
+#define CF_WARP_WS
 /*#define CF_NO_SETPGID*/
 
 /* You don't modify these
