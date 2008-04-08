@@ -1,3 +1,9 @@
+ion (0.0.20020207-100ap) unstable; urgency=low
+
+  * Update to work on a modern Ubuntu-based system.
+
+ -- Avery Pennarun <apenwarr@gmail.com>  Tue, 08 Apr 2008 18:23:13 -0400
+
 ion (0.0.20020207-1) unstable; urgency=low
 
   * New upstream version. Reverts to old behaviour with respect to
