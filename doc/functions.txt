@@ -1,0 +1,189 @@
+
+
+ION FUNCTIONS
+
+These functions can be used in the 'bindings' section of the configuration
+file.
+
+
+Navigation
+----------
+
+switch_nth, n		Switch to n:th client within frame
+switch_next		Switch to next client within frame
+switch_prev		Switch to previous client within frame
+goto_above_frame	Go to above frame
+goto_below_frame	Go to below frame
+goto_right_frame	Go to next frame left
+goto_left_frame		Go to next frame right
+goto_previous		Goto previously active client
+switch_ws_name, "name"	Go to named workspace
+switch_ws_nth, n	Go to n:th workspace
+switch_ws_nth2, scrn, n Go to n:th workspace on screen scrn; current
+		        if n is less than zero.
+switch_ws_next		Go to next workspace. Wraps around at ends.
+switch_ws_prev		Go to previous workspace. Wraps around at ends.
+switch_ws_next_n	Go to n:th next workspace. Does not wrap around.
+switch_ws_prev_n	Go to n:th previous workspace. Does not wrap
+			around. 
+goto_client_name "name"	Go to named client
+set_shortcut		Reads a key and sets that (if valid) as
+			a shortcut key for current frame.
+goto_shortcut		Goes to frame with shortcut set to
+			read key.
+
+
+Resize and split
+----------------
+
+resize_vert		Start resizing vertically
+resize_horiz		Start resizing horizontally
+maximize_vert		Maximize vertically
+maximize_horiz		Maximize horizontally
+set_width pixels	Obvious
+set_height pixels	Obvious
+set_widthq q		Set width of frame to q*width of screen
+set_heightq q		Set height of frame to q*height of screen
+split_vert		Split vertically
+split_horiz		Split horizontally
+split_top "dir"		Split at the top (screen) level in
+	  		direction "dir" (left/right/top/bottom).
+
+
+In resize mode (moveres_bindings):
+
+grow			Increase frame size  by CF_WIDTH/HEIGHT_UNIT
+shrink			Decrease frame size  by CF_WIDTH/HEIGHT_UNIT
+end_resize		Leave resize mode
+cancel_resize		Leave resize mode, size unchanged if xor-resize
+			enabled
+
+
+Close and destroy
+-----------------
+
+close			Close current client
+kill			Kill current client
+closedestroy		Close current client if any or destroy_frame
+destroy_frame		Destroy current frame moving remaining clients to
+			"sister" frame. If the frame is last on the
+			workspace, the workspace is destoyed as well, unless
+			no other workspaces are left, when any action is
+			refused.
+
+
+General
+-------
+
+restart			Restart Ion
+restart_other, "cmd"	Restart other window manager
+exec, "cmd"		Run command
+exit			Exit Ion
+
+
+Queries
+-------
+
+query_runfile, "prompt", "cmd"		Run command with user given file
+query_runwith, "prompt", "cmd"		Run command with user input as
+					argument
+query_yesno, "prompt", "function"	Query user if function should be run
+query_function	       			Query user for ion function(s) to call.
+					The format of the input string is
+					that of Ion configuration files with
+					commands separated by semicolons.
+query_exec				Query user for command to run.
+					If the command is prefixed with a
+					colon (:) it is run in an xterm
+					(ion-runinxterm)
+query_attachclient			Query for client to attach
+query_gotoclient			Query for client to go to
+query_workspace				Query for new workspace to create or
+					existing to go to
+query_workspace_with			Query for new workspace to create with
+					current client
+query_renameworkspace			Query to rename current workspace
+
+
+Tags
+----
+
+toggle_tagged		Toggle client tagged-flag
+clear_tags		Clear all clients' tagged-flag
+attach_tagged		Attach tagged clients to frame
+
+
+Pointer
+-------
+
+tab_switch		Switch to client
+p_tabdrag		Drag tab
+p_resize		Resize
+
+
+
+LINE-EDITOR FUNCTIONS
+
+These functions can be used in 'edln_bindings'
+
+
+Movement
+--------
+
+back			Go backward character
+forward			Go forward character
+bol			Go to beginning of line
+eol			Go to end of line
+skip_word		Skip word
+bskip_word		Backward skip  word
+
+
+Deletion
+--------
+
+delete			Delete next character
+backspace		Delete previous character
+kill_to_eol		Delete to end of line
+kill_to_bol		Delete to beginning of line
+kill_line		Delete whole line
+kill_word		Delete word
+bkill_word		Backward delete word
+
+
+Selection
+---------
+
+set_mark		Set mark (start selection)
+cut			Cut selection
+copy			Copy selection
+paste			Paste
+
+
+Completion and history
+----------------------
+
+complete		Complete or show possible completions
+scrollup		Scroll completion listing or message up
+scrolldown		Scroll completion listing or message down
+history_next		Next history entry
+history_prev		Previous history entry
+
+
+The rest
+--------
+
+finish			Finish, accept query
+cancel			Cancel query
+command_sequence "str"	A string of calls to functions mentioned in this
+		 	file. The format of string is that of Ion
+			configuration files.
+			
+			Example: To go to a frame right of the current
+			one and run an xterm when Mod1+R is pressed,
+			add the following to your binding configurations:
+			
+			kpress "Mod1+R", "command_sequence", \
+			       "goto_right; exec \"xterm\""
+
+			See also: query_function
+

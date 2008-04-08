@@ -1,0 +1,72 @@
+
+2002-01-19:
+  * Warning callbacks (thanks to Lukas Schroeder). libtu now depends
+    on the asprintf functions and one implementation is included in
+    snprintf_2.2/.
+  * The tokenizer also supports reading from a buffer now.
+
+2001-03-31:
+  * Added StringIntMap
+
+2001-01-05:
+  * Added 'stripws'.
+
+2001-01-02:
+  * Added libtu_(v)asprintf functions.
+
+2000-12-28:
+  * Makefile/path settings changes
+
+2000-12-20:
+  * Use 'ranlib' instead of 'ar s'.
+
+2000-11-04:
+  * Added LIBTU_NO_ERRMSG so snprintf is not needed with programs
+    that don't use the errmsg functions (pwm).
+
+2000-10-27:
+  * Added errmsg_* functions alike warn_* -- asprintf and vasprintf
+    required now.
+
+2000-10-02:
+  * Added missing TOK_INIT (could cause segfaults).
+
+2000-08-28:
+  * Added tokz_warn
+  * Parser error handling fixes
+  * Once again, 'make install' portability fixes
+
+2000-08-27:
+  * Made check_args non-static for use with ion
+
+2000-07-24:
+  * Fixed a bug with OPT_NO_DASH
+
+2000-07-21:
+  * Added 'bool' config file data type
+  * Brought tester*.c up-to-date
+
+2000-06-03:
+  * Default include path support
+
+2000-05-26:
+  * Increased MAX_NEST and MAX_TOKENS to 256
+
+2000-05-21:
+  * Optparser generates --help from option descriptions in the
+    OptParserOpt structure
+  * Changed the options --license, --authors and --proginfo to single
+    --about
+
+2000-04-22:
+  * Portability fixes
+
+2000-04-19:
+  * Simpler optparser
+  * New Makefile system
+
+2000-02-23:
+  * Error tolerant config file parsing mode
+
+2000-02-19:
+  * Added include support in config file parser
