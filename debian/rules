@@ -14,7 +14,7 @@ build:
 
 clean:
 	test -e debian/control
-	test root = "`whoami`" || (echo need root priviledges; exit 1)
+	test root = "`whoami`" || (echo need root privileges; exit 1)
 	rm -f
 	-$(MAKE) realclean
 	rm -f debian/files debian/substvars
@@ -22,7 +22,7 @@ clean:
 
 install:
 	test -e debian/control
-	test root = "`whoami`" || (echo need root priviledges; exit 1)
+	test root = "`whoami`" || (echo need root privileges; exit 1)
 	rm -f debian/substvars
 	rm -rf $(INSTDIR)
 	$(MAKE) install \
@@ -38,7 +38,7 @@ binary-indep: build install
 # Build architecture-dependent files here.
 binary-arch: build install
 	test -e debian/control
-	test root = "`whoami`" || (echo need root priviledges; exit 1)
+	test root = "`whoami`" || (echo need root privileges; exit 1)
 	install -d -m0755 $(DOCDIR)/examples \
 		$(INSTDIR)/usr/lib/menu
 	install -m0644 debian/menu $(INSTDIR)/usr/lib/menu/ion
