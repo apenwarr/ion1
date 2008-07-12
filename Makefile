@@ -39,9 +39,9 @@ _install:
 	$(INSTALLDIR) $(MANDIR)/man1
 	$(INSTALL) -m $(DATA_MODE) man/ion.1x $(MANDIR)/man1
 
-	$(INSTALLDIR) $(DOCDIR)/ion
+	$(INSTALLDIR) $(DOCDIR)/ion1
 	for i in $(DOCS); do \
-		$(INSTALL) -m $(DATA_MODE) $$i $(DOCDIR)/ion; \
+		$(INSTALL) -m $(DATA_MODE) $$i $(DOCDIR)/ion1; \
 	done
 
 	$(INSTALLDIR) $(ETCDIR)/ion

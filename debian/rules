@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-PACKAGE:=ion
+PACKAGE:=ion1
 INSTDIR:=debian/inst.$(PACKAGE)
 DOCDIR:=$(INSTDIR)/usr/share/doc/$(PACKAGE)
 

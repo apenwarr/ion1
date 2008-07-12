@@ -1,3 +1,10 @@
+ion1 (0.0.20020207-101ap) unstable; urgency=low
+
+  * Build on Debian-Sarge to further decrease dependencies.
+  * Rename package to ion1 instead of ion.
+
+ -- Avery Pennarun <apenwarr@gmail.com>  Sat, 12 Jul 2008 20:53:52 +0000
+
 ion (0.0.20020207-100ap) unstable; urgency=low
 
   * Update to work on a modern Ubuntu-based system.
