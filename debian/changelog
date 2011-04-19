@@ -1,3 +1,9 @@
+ion1 (0.0.20020207-102ap) unstable; urgency=low
+
+  * Reduce minimum vertical and horizontal frame sizes.
+
+ -- Avery Pennarun <apenwarr@gmail.com>  Tue Apr 19 13:46:50 EDT 2011
+
 ion1 (0.0.20020207-101ap) unstable; urgency=low
 
   * Build on Debian-Sarge to further decrease dependencies.

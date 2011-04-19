@@ -66,8 +66,8 @@
 
 #define CF_FALLBACK_FONT_NAME "fixed"
 
-#define CF_MIN_WIDTH 20
-#define CF_MIN_HEIGHT 3
+#define CF_MIN_WIDTH 1
+#define CF_MIN_HEIGHT 1
 
 /* Windows whose (x, y)-coordinates are less than this much from both
  * top and left border of the screen are automatically considered stubborn.
